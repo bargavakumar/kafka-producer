@@ -19,8 +19,12 @@ public class PublisherController {
 
     private static final Logger logger = LoggerFactory.getLogger(PublisherController.class);
 
-    @Autowired
     private ProducerService producerService;
+
+    @Autowired
+    PublisherController(ProducerService producerService) {
+        this.producerService = producerService;
+    }
 
     @PostMapping(path = "/customerDetails", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<CustomerDetailsResponse> customerDetails(@RequestHeader(value = "Authorization", required = true) String authorization,

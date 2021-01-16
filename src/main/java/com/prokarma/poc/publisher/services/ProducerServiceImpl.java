@@ -18,8 +18,12 @@ public class ProducerServiceImpl implements ProducerService {
     private static Logger logger = LoggerFactory.getLogger(ProducerServiceImpl.class);
     private static ObjectMapper objectMapper = new ObjectMapper();
 
+    private KafkaPublisher kafkaPublisher;
+
     @Autowired
-    KafkaPublisher kafkaPublisher;
+    ProducerServiceImpl(KafkaPublisher kafkaPublisher) {
+        this.kafkaPublisher = kafkaPublisher;
+    }
 
     @Override
     public CustomerDetailsResponse postMessage(CustomerDetails customerDetails) {
@@ -32,7 +36,6 @@ public class ProducerServiceImpl implements ProducerService {
             logger.error("Exception thrown while converting to Object node {}", ex.getMessage());
             throw new PublisherException(ex.getMessage());
         }
-
 
         return new CustomerDetailsResponse(PublisherConstant.SUCCESS, PublisherConstant.PUBLISH_SUCCESSFUL);
     }

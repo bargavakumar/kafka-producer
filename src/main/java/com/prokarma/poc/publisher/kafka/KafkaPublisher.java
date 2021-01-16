@@ -20,8 +20,12 @@ public class KafkaPublisher {
     @Value("${kafka-topic}")
     private String topic;
 
+    private KafkaTemplate<String, ObjectNode> kafkaTemplate;
+
     @Autowired
-    KafkaTemplate<String, ObjectNode> kafkaTemplate;
+    KafkaPublisher(KafkaTemplate<String, ObjectNode> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     public void publish(ObjectNode objectNode) {
         ListenableFuture<SendResult<String, ObjectNode>> listenableFuture = kafkaTemplate.send(topic, objectNode);
