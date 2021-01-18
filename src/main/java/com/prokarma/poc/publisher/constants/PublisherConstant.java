@@ -2,10 +2,6 @@ package com.prokarma.poc.publisher.constants;
 
 public class PublisherConstant {
 
-    private PublisherConstant() {
-
-    }
-
     public static final String MASK_CUSTOMER_NUMBER = "customerNumber";
     public static final String MASK_EMAIL = "email";
     public static final String MASK_BIRTHDATE = "birthDate";
@@ -16,4 +12,8 @@ public class PublisherConstant {
     public static final String Error = "Error";
     public static final String PUBLISH_SUCCESSFUL = "Message sent to Kafka successfully";
     public static final String CUSTOMER_STATUS = "customerStatus";
+
+    private PublisherConstant() {
+
+    }
 }

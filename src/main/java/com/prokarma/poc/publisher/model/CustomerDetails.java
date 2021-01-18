@@ -7,13 +7,10 @@ import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -21,49 +18,38 @@ import java.util.Objects;
  */
 @ApiModel(description = "CustomerDetails")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-01-11T11:44:45.746Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-01-17T13:50:03.982Z")
 
-public class CustomerDetails implements Serializable {
+
+public class CustomerDetails {
     @JsonProperty("customerNumber")
-    @NotBlank(message = "customerNumber is required")
-    private String customerNumber;
+    private String customerNumber = null;
 
     @JsonProperty("firstName")
-    @NotBlank(message = "firstName is required")
-    private String firstName;
+    private String firstName = null;
 
     @JsonProperty("lastName")
-    @NotBlank(message = "lastName is required")
-    private String lastName;
+    private String lastName = null;
 
     @JsonProperty("birthDate")
-    @NotNull(message = "birthDate is required")
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private Date birthDate;
+    private LocalDate birthDate = null;
 
     @JsonProperty("country")
-    @NotBlank(message = "country is required")
-    private String country;
+    private String country = null;
 
     @JsonProperty("countryCode")
-    @NotBlank(message = "countryCode is required")
-    private String countryCode;
+    private String countryCode = null;
 
     @JsonProperty("mobileNumber")
-    @NotBlank(message = "mobileNumber is required")
-    private String mobileNumber;
+    private String mobileNumber = null;
 
     @JsonProperty("email")
-    @NotBlank(message = "email is required")
-    private String email;
-
+    private String email = null;
     @JsonProperty("customerStatus")
-    @NotNull(message = "customerStatus is required")
-    private CustomerStatusEnum customerStatus;
-
+    private CustomerStatusEnum customerStatus = null;
     @JsonProperty("address")
-    @NotNull(message = "address is required")
-    private Address address;
+    private Address address = null;
 
     public CustomerDetails customerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
@@ -131,7 +117,7 @@ public class CustomerDetails implements Serializable {
         this.lastName = lastName;
     }
 
-    public CustomerDetails birthDate(Date birthDate) {
+    public CustomerDetails birthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
         return this;
     }
@@ -146,11 +132,11 @@ public class CustomerDetails implements Serializable {
 
     @Valid
 
-    public Date getBirthdate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthdate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -322,7 +308,7 @@ public class CustomerDetails implements Serializable {
         sb.append("    customerNumber: ").append(toIndentedString(customerNumber)).append("\n");
         sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
         sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
-        sb.append("    birthDate: ").append(toIntendedFormat(birthDate)).append("\n");
+        sb.append("    birthDate: ").append(toIndentedString(birthDate)).append("\n");
         sb.append("    country: ").append(toIndentedString(country)).append("\n");
         sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
         sb.append("    mobileNumber: ").append(toIndentedString(mobileNumber)).append("\n");
@@ -345,18 +331,6 @@ public class CustomerDetails implements Serializable {
     }
 
     /**
-     * Convert the given date to intended format string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIntendedFormat(java.util.Date o) {
-        if (o == null) {
-            return "null";
-        }
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        return sdf.format(o).replace("\n", "\n    ");
-    }
-
-    /**
      * Customer Status
      */
     public enum CustomerStatusEnum {
@@ -368,33 +342,15 @@ public class CustomerDetails implements Serializable {
 
         RESTORED("R");
 
-        public String getValue() {
-            return value;
-        }
-
         private String value;
 
         CustomerStatusEnum(String value) {
             this.value = value;
         }
 
-       /* @JsonCreator
-        public static CustomerStatusEnum fromValue(String text) {
-            for (CustomerStatusEnum b : CustomerStatusEnum.values()) {
-                if (String.valueOf(b.value).equals(text)) {
-                    return b;
-                }
-            }
-            return null;
+        public String getValue() {
+            return value;
         }
-
-        @Override
-        @JsonValue
-        public String toString() {
-            return String.valueOf(value);
-        }*/
-
-
     }
 }
 

@@ -32,10 +32,10 @@ public class PublisherController {
                                                             @RequestHeader(value = "Application-Id", required = true) String applicationId,
                                                             @Valid @RequestBody CustomerDetails customerDetails) {
 
-        logger.info("Telemetry Events: Type = REQUEST_METRIC | Incoming customer details request {}", customerDetails);
+        logger.info("Incoming customer details request {}", customerDetails);
         CustomerDetailsResponse customerDetailsResponse = producerService.postMessage(customerDetails);
         ResponseEntity<CustomerDetailsResponse> responseEntity = new ResponseEntity<>(customerDetailsResponse, HttpStatus.OK);
-        logger.info("Telemetry Events: Type = RESPONSE_METRIC | Service publish response {}", responseEntity);
+        logger.info("Service publish response {}", responseEntity);
         return responseEntity;
 
 

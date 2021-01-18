@@ -1,7 +1,6 @@
 package com.prokarma.poc.publisher.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,26 +12,35 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableAuthorizationServer
 public class PublisherAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    @Qualifier("encoder")
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
-    @Value("${publisher-clientId}")
+    @Value("${authorization.clientId}")
     private String clientId;
 
-    @Value("${publisher-clientSecret}")
+    @Value("${authorization.clientSecret}")
     private String clientSecret;
+
+    @Value("${authorization.grantTypes}")
+    private String grantTypes;
+
+    @Value("${authorization.authorizedScopes}")
+    private String authorizedScopes;
+
+    @Value("${authorization.tokenExpiryTime}")
+    private Integer expiryTime;
+
+    @Autowired
+    PublisherAuthorizationServerConfig(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
                 .inMemory()
                 .withClient(clientId).secret(passwordEncoder.encode(clientSecret))
-                .authorizedGrantTypes("client_credentials").scopes("all").accessTokenValiditySeconds(900);
+                .authorizedGrantTypes(grantTypes).scopes(authorizedScopes).accessTokenValiditySeconds(expiryTime);
     }
-
-   /*
-                .refreshTokenValiditySeconds(240000)   */
 
 
 }

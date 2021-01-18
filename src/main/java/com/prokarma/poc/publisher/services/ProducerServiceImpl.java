@@ -16,13 +16,14 @@ import org.springframework.stereotype.Service;
 public class ProducerServiceImpl implements ProducerService {
 
     private static Logger logger = LoggerFactory.getLogger(ProducerServiceImpl.class);
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper;
 
     private KafkaPublisher kafkaPublisher;
 
     @Autowired
-    ProducerServiceImpl(KafkaPublisher kafkaPublisher) {
+    ProducerServiceImpl(KafkaPublisher kafkaPublisher, ObjectMapper objectMapper) {
         this.kafkaPublisher = kafkaPublisher;
+        this.objectMapper = objectMapper;
     }
 
     @Override

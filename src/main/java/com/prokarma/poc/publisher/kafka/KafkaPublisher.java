@@ -32,13 +32,13 @@ public class KafkaPublisher {
         listenableFuture.addCallback(new ListenableFutureCallback<SendResult<String, ObjectNode>>() {
             @Override
             public void onFailure(Throwable ex) {
-                logger.error("Telemetry Events: Type = METRIC | Message failed to send to Kafka");
+                logger.error("Message failed to send to Kafka");
                 throw new PublisherException(ex.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<String, ObjectNode> result) {
-                logger.info("Telemetry Events: Type = METRIC | Message Sent SuccessFully to Kafka");
+                logger.info("Message Sent SuccessFully to Kafka");
             }
         });
 
