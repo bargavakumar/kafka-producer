@@ -2,7 +2,8 @@ package com.prokarma.poc.publisher.controller;
 
 import com.prokarma.poc.publisher.model.CustomerDetails;
 import com.prokarma.poc.publisher.model.CustomerDetailsResponse;
-import com.prokarma.poc.publisher.services.ProducerService;
+import com.prokarma.poc.publisher.services.PublisherService;
+import com.prokarma.poc.publisher.util.PublisherUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,10 @@ public class PublisherController {
 
     private static final Logger logger = LoggerFactory.getLogger(PublisherController.class);
 
-    private ProducerService producerService;
+    private PublisherService producerService;
 
     @Autowired
-    PublisherController(ProducerService producerService) {
+    PublisherController(PublisherService producerService) {
         this.producerService = producerService;
     }
 
@@ -32,7 +33,7 @@ public class PublisherController {
                                                             @RequestHeader(value = "Application-Id", required = true) String applicationId,
                                                             @Valid @RequestBody CustomerDetails customerDetails) {
 
-        logger.info("Incoming customer details request {}", customerDetails);
+        logger.info("Incoming customer details request {}", PublisherUtil.customerDetailsMasker(customerDetails));
         CustomerDetailsResponse customerDetailsResponse = producerService.postMessage(customerDetails);
         ResponseEntity<CustomerDetailsResponse> responseEntity = new ResponseEntity<>(customerDetailsResponse, HttpStatus.OK);
         logger.info("Service publish response {}", responseEntity);

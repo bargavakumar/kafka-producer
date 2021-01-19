@@ -11,7 +11,10 @@ public class PublisherConstant {
     public static final String SUCCESS = "Success";
     public static final String Error = "Error";
     public static final String PUBLISH_SUCCESSFUL = "Message sent to Kafka successfully";
-    public static final String CUSTOMER_STATUS = "customerStatus";
+    public static final String CUSTOMER_DETAILS_CUSTOMER_STATUS = "customerStatus";
+    public static final String CUSTOMER_DETAILS_BIRTH_DATE = "birthDate";
+    public static final String CUSTOMER_DETAILS_CUSTOMER_NUMBER = "customerNumber";
+    public static final String CUSTOMER_DETAILS_EMAIL = "email";
 
     private PublisherConstant() {
 

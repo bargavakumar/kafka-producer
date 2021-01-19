@@ -2,7 +2,7 @@ package com.prokarma.poc.publisher.kafka;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.prokarma.poc.publisher.exceptions.PublisherException;
-import com.prokarma.poc.publisher.services.ProducerServiceImpl;
+import com.prokarma.poc.publisher.services.PublisherServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,16 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Component
 public class KafkaPublisher {
-    private static final Logger logger = LoggerFactory.getLogger(ProducerServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(PublisherServiceImpl.class);
 
     @Value("${kafka-topic}")
     private String topic;
 
     private KafkaTemplate<String, ObjectNode> kafkaTemplate;
+
+    KafkaPublisher() {
+
+    }
 
     @Autowired
     KafkaPublisher(KafkaTemplate<String, ObjectNode> kafkaTemplate) {

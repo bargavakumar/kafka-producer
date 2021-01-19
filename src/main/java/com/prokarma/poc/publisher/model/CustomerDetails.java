@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -132,8 +133,8 @@ public class CustomerDetails {
 
     @Valid
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public String getBirthDate() {
+        return birthDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     public void setBirthDate(LocalDate birthDate) {

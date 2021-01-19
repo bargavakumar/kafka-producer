@@ -4,7 +4,6 @@ import com.prokarma.poc.publisher.constants.PublisherConstant;
 import com.prokarma.poc.publisher.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,17 +30,11 @@ public class PublisherControllerAdvice {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(AuthenticationException.class)
-    public final ResponseEntity<ErrorResponse> handleException(AuthenticationException authenticationException) {
-        ErrorResponse errorResponse = new ErrorResponse(PublisherConstant.Error, authenticationException.getMessage(), AuthenticationException.class.getSimpleName());
-        return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+    @ExceptionHandler(IllegalArgumentException.class)
+    public final ResponseEntity<ErrorResponse> handleException(IllegalArgumentException illegalArgumentException) {
+        ErrorResponse errorResponse = new ErrorResponse(PublisherConstant.Error, illegalArgumentException.getMessage(), NoHandlerFoundException.class.getSimpleName());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
-
-/*    @ExceptionHandler(HttpClientErrorException.Unauthorized.class)
-    public final ResponseEntity<ErrorResponse> handleException(RuntimeException authenticationException, WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(PublisherConstant.Error, authenticationException.getMessage(), RuntimeException.class.getSimpleName());
-        return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
-    }*/
 
 
 }
