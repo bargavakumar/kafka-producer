@@ -1,4 +1,3 @@
-/*
 package com.prokarma.poc.publisher;
 
 import com.prokarma.poc.publisher.model.CustomerDetails;
@@ -41,4 +40,3 @@ class PublisherControllerIntegrationTest {
         return "http://localhost:" + port + uri;
     }
 }
-*/
