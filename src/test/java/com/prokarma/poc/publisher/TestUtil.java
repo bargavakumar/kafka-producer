@@ -1,4 +1,4 @@
-package com.prokarma.poc.publisher.util;
+package com.prokarma.poc.publisher;
 
 import com.prokarma.poc.publisher.model.Address;
 import com.prokarma.poc.publisher.model.CustomerDetails;
