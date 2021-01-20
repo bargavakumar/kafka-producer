@@ -2,7 +2,6 @@ package com.prokarma.poc.publisher;
 
 import com.prokarma.poc.publisher.model.Address;
 import com.prokarma.poc.publisher.model.CustomerDetails;
-import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDate;
 

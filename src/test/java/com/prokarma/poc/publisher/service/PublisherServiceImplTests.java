@@ -1,11 +1,11 @@
 package com.prokarma.poc.publisher.service;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.prokarma.poc.publisher.TestUtil;
 import com.prokarma.poc.publisher.constants.PublisherConstant;
 import com.prokarma.poc.publisher.kafka.KafkaPublisher;
 import com.prokarma.poc.publisher.model.CustomerDetailsResponse;
 import com.prokarma.poc.publisher.services.PublisherServiceImpl;
-import com.prokarma.poc.publisher.TestUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
