@@ -37,7 +37,7 @@ class PublisherControllerIntegrationTest {
     @Test
     public void givenMovie_whenMakingPostRequestToMovieEndpoint_thenCorrect() {
 
-        CustomerDetails customerDetails = TestUtil.createCustomerDetails();
+        CustomerDetails customerDetails = Utility.createCustomerDetails();
 
 
         String accessToken =

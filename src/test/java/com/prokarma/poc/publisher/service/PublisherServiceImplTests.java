@@ -1,7 +1,7 @@
 package com.prokarma.poc.publisher.service;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.prokarma.poc.publisher.TestUtil;
+import com.prokarma.poc.publisher.Utility;
 import com.prokarma.poc.publisher.constants.PublisherConstant;
 import com.prokarma.poc.publisher.kafka.KafkaPublisher;
 import com.prokarma.poc.publisher.model.CustomerDetailsResponse;
@@ -26,7 +26,7 @@ public class PublisherServiceImplTests {
 
     @Test
     public void testPostMessageWhenValidCustomerDetailsPassed() {
-        CustomerDetailsResponse customerDetailsResponse = publisherService.postMessage(TestUtil.createCustomerDetails());
+        CustomerDetailsResponse customerDetailsResponse = publisherService.postMessage(Utility.createCustomerDetails());
         Mockito.verify(kafkaPublisher, Mockito.times(1)).publish(ArgumentMatchers.any(ObjectNode.class));
         Assert.assertNotNull(customerDetailsResponse);
         Assert.assertEquals(PublisherConstant.SUCCESS, customerDetailsResponse.getStatus());

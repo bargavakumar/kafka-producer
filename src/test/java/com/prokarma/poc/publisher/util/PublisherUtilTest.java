@@ -1,7 +1,7 @@
 package com.prokarma.poc.publisher.util;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.prokarma.poc.publisher.TestUtil;
+import com.prokarma.poc.publisher.Utility;
 import com.prokarma.poc.publisher.constants.PublisherConstant;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class PublisherUtilTest {
 
     @Test
     public void testCustomerDetailsMasker() {
-        ObjectNode newNode = PublisherUtil.customerDetailsMasker(TestUtil.createCustomerDetails());
+        ObjectNode newNode = PublisherUtil.customerDetailsMasker(Utility.createCustomerDetails());
         Assert.assertNotNull(newNode);
         Assert.assertEquals("****bhargav@gmail.com", newNode.get(PublisherConstant.CUSTOMER_DETAILS_EMAIL).textValue());
         Assert.assertEquals("**-**-1991", newNode.get(PublisherConstant.CUSTOMER_DETAILS_BIRTH_DATE).textValue());

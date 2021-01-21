@@ -5,7 +5,7 @@ import com.prokarma.poc.publisher.model.CustomerDetails;
 
 import java.time.LocalDate;
 
-public class TestUtil {
+public class Utility {
 
     public static CustomerDetails createCustomerDetails() {
         CustomerDetails customerDetails = new CustomerDetails();
