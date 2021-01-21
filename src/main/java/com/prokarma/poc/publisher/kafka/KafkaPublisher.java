@@ -22,10 +22,6 @@ public class KafkaPublisher {
 
     private KafkaTemplate<String, ObjectNode> kafkaTemplate;
 
-    KafkaPublisher() {
-
-    }
-
     @Autowired
     KafkaPublisher(KafkaTemplate<String, ObjectNode> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
