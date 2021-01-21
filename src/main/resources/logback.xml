@@ -9,7 +9,7 @@
     </appender>
     <appender name="SPLUNK"
               class="com.splunk.logging.HttpEventCollectorLogbackAppender">
-        <url>https://prd-p-kuga4.splunkcloud.com:8088</url>
+        <url>https://prd-p-kuga4.splunkcloud.com:8088/services/collector/event</url>
         <token>7a10f683-0270-43ba-88b0-7197886d8cb3</token>
         <index>main</index>
         <disableCertificateValidation>true</disableCertificateValidation>
