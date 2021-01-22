@@ -157,6 +157,7 @@
                     <excludes>
                         <exclude>com/prokarma/poc/publisher/PublisherApplication.class</exclude>
                         <exclude>com/prokarma/poc/publisher/exceptions/*.class</exclude>
+                        <exclude>com/prokarma/poc/publisher/security/*.class</exclude>
                         <exclude>com/prokarma/poc/publisher/model/*.class</exclude>
                     </excludes>
                 </configuration>

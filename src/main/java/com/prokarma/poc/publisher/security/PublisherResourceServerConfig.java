@@ -1,6 +1,7 @@
 package com.prokarma.poc.publisher.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prokarma.poc.publisher.constants.PublisherConstant;
 import com.prokarma.poc.publisher.model.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,7 @@ public class PublisherResourceServerConfig extends ResourceServerConfigurerAdapt
     @Bean
     AccessDeniedHandler accessDeniedHandler() {
         return (HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) -> {
-            ResponseEntity<ErrorResponse> errorResponseResponseEntity = new ResponseEntity<>(new ErrorResponse("Error", "Forbidden", "Forbidden"), HttpStatus.FORBIDDEN);
+            ResponseEntity<ErrorResponse> errorResponseResponseEntity = new ResponseEntity<>(new ErrorResponse(PublisherConstant.Error, e.getMessage(), e.getClass().getSimpleName()), HttpStatus.FORBIDDEN);
             OutputStream out = httpServletResponse.getOutputStream();
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(out, errorResponseResponseEntity);
@@ -52,7 +53,7 @@ public class PublisherResourceServerConfig extends ResourceServerConfigurerAdapt
     @Bean
     AuthenticationEntryPoint authenticationEntryPoint() {
         return (HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) -> {
-            ResponseEntity<ErrorResponse> errorResponseResponseEntity = new ResponseEntity<>(new ErrorResponse("401", "Unauthorised", "Unauthorised"), HttpStatus.UNAUTHORIZED);
+            ResponseEntity<ErrorResponse> errorResponseResponseEntity = new ResponseEntity<>(new ErrorResponse(PublisherConstant.Error, e.getMessage(),  e.getClass().getSimpleName()), HttpStatus.UNAUTHORIZED);
             OutputStream out = httpServletResponse.getOutputStream();
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(out, errorResponseResponseEntity);
