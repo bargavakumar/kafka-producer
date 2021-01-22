@@ -15,34 +15,38 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class PublisherControllerAdvice {
 
     private static Logger logger = LoggerFactory.getLogger(PublisherControllerAdvice.class);
-    private String exceptionMsg = "Exception thrown {} : ";
+    private String exceptionMsg = "applicationName=Publisher|Exception thrown={}";
 
     @ExceptionHandler(PublisherException.class)
     public final ResponseEntity<ErrorResponse> handleException(PublisherException publisherException) {
         ErrorResponse errorResponse = new ErrorResponse(PublisherConstant.Error, publisherException.getMessage(), PublisherException.class.getSimpleName());
-        logger.error(exceptionMsg, errorResponse);
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<ErrorResponse> errorResponseResponseEntity = new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        logger.error(exceptionMsg, errorResponseResponseEntity);
+        return errorResponseResponseEntity;
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public final ResponseEntity<ErrorResponse> handleException(MethodArgumentNotValidException exception) {
         ErrorResponse errorResponse = new ErrorResponse(PublisherConstant.Error, exception.getMessage(), MethodArgumentNotValidException.class.getSimpleName());
-        logger.error(exceptionMsg, errorResponse);
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        ResponseEntity<ErrorResponse> errorResponseResponseEntity = new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        logger.error(exceptionMsg, errorResponseResponseEntity);
+        return errorResponseResponseEntity;
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public final ResponseEntity<ErrorResponse> handleException(NoHandlerFoundException noHandlerFoundException) {
         ErrorResponse errorResponse = new ErrorResponse(PublisherConstant.Error, noHandlerFoundException.getMessage(), NoHandlerFoundException.class.getSimpleName());
-        logger.error(exceptionMsg, errorResponse);
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        ResponseEntity<ErrorResponse> errorResponseResponseEntity = new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        logger.error(exceptionMsg, errorResponseResponseEntity);
+        return errorResponseResponseEntity;
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public final ResponseEntity<ErrorResponse> handleException(IllegalArgumentException illegalArgumentException) {
         ErrorResponse errorResponse = new ErrorResponse(PublisherConstant.Error, illegalArgumentException.getMessage(), NoHandlerFoundException.class.getSimpleName());
-        logger.error(exceptionMsg, errorResponse);
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        ResponseEntity<ErrorResponse> errorResponseResponseEntity = new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        logger.error(exceptionMsg, errorResponseResponseEntity);
+        return errorResponseResponseEntity;
     }
 
 

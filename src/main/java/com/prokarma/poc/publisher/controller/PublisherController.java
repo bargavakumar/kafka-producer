@@ -32,11 +32,11 @@ public class PublisherController {
                                                             @RequestHeader(value = "Activity-Id", required = true) String activityId,
                                                             @RequestHeader(value = "Application-Id", required = true) String applicationId,
                                                             @Valid @RequestBody CustomerDetails customerDetails) {
-
-        logger.info("Incoming customer details request {}", PublisherUtil.customerDetailsMasker(customerDetails));
+        long startTime = System.currentTimeMillis();
+        logger.info("applicationName=Publisher|Incoming customer details request={}", PublisherUtil.customerDetailsMasker(customerDetails));
         CustomerDetailsResponse customerDetailsResponse = producerService.postMessage(customerDetails);
         ResponseEntity<CustomerDetailsResponse> responseEntity = new ResponseEntity<>(customerDetailsResponse, HttpStatus.OK);
-        logger.info("Service publish response {}", responseEntity);
+        logger.info("applicationName=Publisher|customerDetails service response=" + responseEntity + "|timetook=" + (System.currentTimeMillis() - startTime));
         return responseEntity;
 
 
